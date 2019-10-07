@@ -271,6 +271,67 @@ int main(void) {
 			break;
 		}
 
+		case 14:
+		{
+			int vetor[10], igual[5] = {}, contador_iguais = 0;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d valor: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				for (int j = 0; j <= i; j++)
+				{
+					if (vetor[i] == vetor[j]) {
+						igual[j] = vetor[j];
+						contador_iguais++;
+					}
+				}
+			}
+
+			for (int i = 0; i < contador_iguais; i++)
+			{
+				printf_s("Valores iguais: | %d |\n", igual[i]);
+			}
+
+			break;
+		}
+
+		case 15:
+		{
+			int vetor[20], repetidos[10], contador = 0;
+
+			for (int i = 0; i < 20; i++)
+			{
+				printf_s("Digite o %d valor: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+				for (int j = 0; j < i; j++)
+				{
+					if (vetor[j] == vetor[i])
+					{
+						repetidos[contador] = vetor[i];
+						if(j == (i-1) )
+							contador++;
+					}
+				}
+			}
+			for (int i = 0; i < 20; i++)
+			{
+				for (int j = 0; j <= contador; j++) 
+				{
+					if (vetor[i] == repetidos[j]) {
+						vetor[i] == NULL;
+					}
+				}
+			}
+			for (int i = 0; i < 20; i++)
+			{
+				if (vetor[i] != NULL)
+					printf_s("Vetor[%d] = | %d |\n", i, vetor[i]);
+			}
+			break;
+		}
+
 		default:
 		{
 			if (exercicio == 0)
