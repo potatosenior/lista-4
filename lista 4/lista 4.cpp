@@ -2,11 +2,13 @@
 #include <stdlib.h>
 
 double pow(double a, int b);
+int e_primo(int num);
+
 int main(void) {
 	int exercicio = 1;
 
 	while (exercicio != 0) {
-		printf("\nDigite 0 para sair ou exercicio desejado: ");
+		printf("\n\n-------------------------------------------------------\nDigite 0 para sair ou exercicio desejado: ");
 		scanf_s("%d", &exercicio);
 
 		switch (exercicio)
@@ -273,25 +275,39 @@ int main(void) {
 
 		case 14:
 		{
-			int vetor[10], igual[5] = {}, contador_iguais = 0;
+			int vetor[10], iguais[10] = {}, igual, contador_iguais = 0;
 
 			for (int i = 0; i < 10; i++)
 			{
 				printf_s("Digite o %d valor: ", i + 1);
 				scanf_s("%d", &vetor[i]);
+			}
 
-				for (int j = 0; j <= i; j++)
+			for (int i = 0; i < 10; i++)
+			{
+				for (int k = 0; k < i; k++)
 				{
-					if (vetor[i] == vetor[j]) {
-						igual[j] = vetor[j];
-						contador_iguais++;
+					igual = 0;
+
+					if (vetor[i] == vetor[k])
+					{
+						for (int j = 0; j < contador_iguais; j++)
+						{
+							if (vetor[i] == iguais[j])
+								igual = 1;
+						}
+						if (igual == 0)
+						{
+							iguais[contador_iguais] = vetor[i];
+							contador_iguais++;
+						}
 					}
 				}
 			}
 
 			for (int i = 0; i < contador_iguais; i++)
 			{
-				printf_s("Valores iguais: | %d |\n", igual[i]);
+				printf_s("Numeros iguais: | %d |\n", iguais[i]);
 			}
 
 			break;
@@ -299,45 +315,512 @@ int main(void) {
 
 		case 15:
 		{
-			int vetor[20], repetidos[10], contador = 0;
+			int vetor[20], repetidos[10] = {NULL}, repete, contador = 0;
 
 			for (int i = 0; i < 20; i++)
 			{
 				printf_s("Digite o %d valor: ", i + 1);
 				scanf_s("%d", &vetor[i]);
-				for (int j = 0; j < i; j++)
+			}
+
+			for (int i = 0; i < 20; i++)
+			{
+				for (int k = 0; k < i; k++)
 				{
-					if (vetor[j] == vetor[i])
+					if (vetor[i] == vetor[k])
 					{
-						repetidos[contador] = vetor[i];
-						if(j == (i-1) )
+						repete = 0;
+
+						for (int j = 0; j < contador; j++)
+						{
+							if (vetor[i] == repetidos[j])
+								repete = 1;
+						}
+						if (repete == 0)
+						{
+							repetidos[contador] = vetor[i];
 							contador++;
+						}
 					}
 				}
+				
 			}
 			for (int i = 0; i < 20; i++)
 			{
-				for (int j = 0; j <= contador; j++) 
+				repete = 0;
+				for (int j = 0; j < contador; j++)
 				{
-					if (vetor[i] == repetidos[j]) {
-						vetor[i] == NULL;
+					if (vetor[i] == repetidos[j])
+						repete = 1;
+				}
+				if (repete == 0)
+					printf_s("Vetor[%d] = | %d |\n", i, vetor[i]);
+				else
+					printf_s("Vetor[%d] = *Repetido*\n", i);
+			}
+			
+			break;
+		}
+
+		case 16:
+		{
+			double vetor[5];
+			int cod;
+
+			for (int i = 0; i < 5; i++)
+			{
+				printf_s("Digite o %d valor: ", i + 1);
+				scanf_s("%lf", &vetor[i]);
+			}
+			printf_s("\nDigite o codigo (0, 1 ou 2): ");
+			scanf_s("%d", &cod);
+
+			if (cod == 0)
+				break;
+			else
+			{
+				if (cod == 1)
+				{
+					for (int i = 0; i < 5; i++)
+					{
+						printf("Vetor[%d] = | %lf |\n", i, vetor[i]);
 					}
 				}
+				else
+				{
+					if (cod == 2)
+					{
+						for (int i = 4; i >= 0; i--)
+						{
+							printf_s("Vetor[%d] = | %lf |\n", i, vetor[i]);
+						}
+					}
+					else
+						printf_s("\nCodigo invalido!");
+				}
 			}
-			for (int i = 0; i < 20; i++)
+				break;
+		}
+
+		case 17:
+		{
+			int vetor[10];
+			
+			for (int i = 0; i < 10; i++)
 			{
-				if (vetor[i] != NULL)
-					printf_s("Vetor[%d] = | %d |\n", i, vetor[i]);
+				printf_s("Digite o %d valor: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+				if (vetor[i] < 0)
+					vetor[i] = 0;
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("vetor[%d] = %d\n", i, vetor[i]);
 			}
 			break;
 		}
+
+		case 18:
+		{
+			int vetor[10], numero;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d valor: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+			}
+			printf_s("\nDigite um numero: ");
+			scanf_s("%d", &numero);
+
+			for (int i = 0; i < 10; i++)
+			{
+				if (vetor[i] % numero == 0)
+					printf_s("O numero %d na posicao vetor[%d] e multiplo de %d!\n", vetor[i], i, numero);
+			}
+			break;
+		}
+
+		case 19:
+		{
+			int vetor[50];
+
+			for (int i = 0; i < 50; i++)
+			{
+				vetor[i] = (i + 5 * i) % (i + 1);
+				printf_s("Vetor[%d] = | %d |\n", i, vetor[i]);
+			}
+			break;
+		}
+
+		case 20:
+		{
+			int vetor[10], impares[10] = { NULL }, i, cont = 0;
+
+			i = 0;
+
+			do
+			{
+				printf_s("Digite o %d valor: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				if (vetor[i] < 0 || vetor[i] > 50)
+					i--;
+				else
+				{ 
+					if (vetor[i] % 2 != 0) {
+						impares[cont] = vetor[i];
+						cont++;
+					}
+				}
+
+				i++;
+			} while ( (vetor[i] < 0 || vetor[i] > 50) && i < 10);
+
+			for (int i = 0; i < 10; i++)
+			{
+				if (impares[i] != NULL)
+					printf_s("Vetor[%d] = %d | impares[%d] = %d\n", i, vetor[i], i, impares[i]);
+				else
+					printf_s("Vetor[%d] = %d | impares[%d] = --\n", i, vetor[i], i);
+			}
+
+			break;
+		}
+
+		case 21:
+		{
+			int vetor_A[10], vetor_B[10], vetor_C[10];
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d valor do vetor A: ", i + 1);
+				scanf_s("%d", &vetor_A[i]);					
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d valor do vetor B: ", i + 1);
+				scanf_s("%d", &vetor_B[i]);
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				vetor_C[i] = vetor_A[i] - vetor_B[i];
+
+				printf_s("Vetor_C[%d] = | %d |\n", i, vetor_C[i]);
+			}
+
+			break;
+		}
+
+		case 22:
+		{
+			int vetor_A[10], vetor_B[10], vetor_C[20], cont_a = 0, cont_b = 0;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d valor do vetor A: ", i + 1);
+				scanf_s("%d", &vetor_A[i]);
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d valor do vetor B: ", i + 1);
+				scanf_s("%d", &vetor_B[i]);
+			}
+			for (int i = 0; i < 20; i++)
+			{
+				if (i % 2 == 0) {
+					vetor_C[i] = vetor_A[cont_a];
+					cont_a++;
+				}
+				else
+				{
+					vetor_C[i] = vetor_B[cont_b];
+					cont_b++;
+				}
+
+				printf_s("Vetor_C[%d] = | %d |\n", i, vetor_C[i]);
+			}
+			break;
+		}
+
+		case 23:
+		{
+			double vetor_A[5], vetor_B[5], resultado = 0;
+
+			for (int i = 0; i < 5; i++)
+			{
+				printf_s("Digite o %d valor do conjunto A: ", i);
+				scanf_s("%lf", &vetor_A[i]);
+				printf_s("Digite o %d valor do conjunto B: ", i);
+				scanf_s("%lf", &vetor_B[i]);
+				printf_s("\n");
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				resultado += vetor_A[i] * vetor_B[i];
+				printf_s("\nVetor_A[%d] = | %lf | Vetor_B[%d] = | %lf |", i, vetor_A[i], i, vetor_B[i]);
+			}
+			printf_s("\nProduto escalar = %lf", resultado);
+
+			break;
+		}
+
+		case 24:
+		{
+			struct dados_alunos
+			{
+				int numero;
+				float altura;
+			};
+
+			struct dados_alunos aluno[10], maior, menor;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o numero do %d aluno: ", i + 1);
+				scanf_s("%d", &aluno[i].numero);
+				printf_s("Digite a altura do aluno: ");
+				scanf_s("%f", &aluno[i].altura);
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				if (i == 0) {
+					maior.altura = aluno[i].altura;
+					maior.numero = aluno[i].numero;
+
+					menor.altura = aluno[i].altura;
+					menor.numero = aluno[i].numero;
+				}
+
+				if (aluno[i].altura > maior.altura)
+				{
+					maior.altura = aluno[i].altura;
+					maior.numero = aluno[i].numero;
+				}
+				if (aluno[i].altura < menor.altura)
+				{
+					menor.altura = aluno[i].altura;
+					menor.numero = aluno[i].numero;
+				}
+			}
+			printf_s("O maior aluno tem o numero %d e a altura de %.2f metros!\n", maior.numero, maior.altura);
+			printf_s("O menor aluno tem o numero %d e a altura de %.2f metros!\n", menor.numero, menor.altura);
+
+			break;
+		}
+
+		case 25:
+		{
+			int vetor[100], cont = 0, j = 0;
+
+			for (int i = 0; i < 100; i++)
+			{
+				cont = 0;
+				for ( j; cont != 1 ; j++)
+				{
+					if (j % 7 != 0 && j % 10 != 7)
+					{
+						vetor[i] = j;
+						cont = 1;
+					}
+				}
+				printf_s("vetor[%d] = %d\n", i, vetor[i]);
+			}
+			break;
+		}
+
+		case 26:
+		{
+			/* 
+			double media, desvio, vetor[10];
+			int n = 10;
+
+			for (int i = 0; i < n; i++)
+			{
+				pow(vetor[i] - media, 2);
+			}
+			*/
+		}
+
+		case 27:
+		{
+			struct numero
+			{
+				int numero;
+				int posicao;
+			};
+
+			numero primo[10];
+			int vetor[10], cont = 0, result;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				result = e_primo(vetor[i]);
+
+				if (result == 1)
+				{
+					primo[cont].numero = vetor[i];
+					primo[cont].posicao = i;
+					cont++;
+				}
+			}
+			printf_s("\nOs seguintes numeros sao primos: \n\n");
+			for (int i = 0; i < cont; i++)
+			{
+				printf_s("O numero | %d | na posicao | %d | do vetor.\n", primo[i].numero, primo[i].posicao);
+			}
+			break;
+		}
+
+		case 28:
+		{
+			int vetor[10], impares[10] = { NULL }, pares[10] = { NULL }, cont_pares = 0, cont_impares = 0;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				if (vetor[i] % 2 == 0)
+				{
+					pares[cont_pares] = vetor[i];
+					cont_pares++;
+				}
+				else
+				{
+					impares[cont_impares] = vetor[i];
+					cont_impares++;
+				}
+			}
+			printf_s("\nElementos utilizados: \n");
+			for (int i = 0; i < 10; i++)
+			{
+				if (impares[i] != NULL)
+				{
+					printf_s("\nImpares[%d] = %d ", i, impares[i]);
+				}
+				if (pares[i] != NULL)
+				{
+					printf_s("| Pares[%d] = %d\n", i, pares[i]);
+				}
+			}
+			break;
+		}
+
+		case 29:
+		{
+			int vetor[6], pares[6] = { NULL }, soma_pares = 0, qntd_pares = 0, impares[6] = { NULL }, qntd_impares = 0;
+
+			for (int i = 0; i < 6; i++)
+			{
+				printf_s("Digite o %d numero: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				if (vetor[i] % 2 == 0)
+				{
+					pares[qntd_pares] = vetor[i];
+					soma_pares += vetor[i];
+					qntd_pares++;
+				}
+				else
+				{
+					impares[qntd_impares] = vetor[i];
+					qntd_impares++;
+				}
+			}
+
+				for (int i = 0; i < qntd_pares; i++)
+				{
+					printf_s("Pares[%d] = | %d | \n", i, pares[i]);
+				}
+				printf_s("\nSoma dos numeros pares: | %d |\n", soma_pares);
+				for (int i = 0; i < qntd_impares; i++)
+				{
+					printf_s("Impares[%d] = | %d | \n", i, impares[i]);
+				}
+				printf_s("\nQuantidade de numeros impares digitados: | %d |", qntd_impares);
+
+				break;
+		}
+
+		case 30:
+		{
+			int vetor_a[10], vetor_b[10], interseccao[10],
+			cont = 0, n = 10, repetido;
+
+			for (int i = 0; i < n; i++)
+			{
+				printf_s("Digite o %d numero do primeiro vetor: ", i + 1);
+				scanf_s("%d", &vetor_a[i]);
+			}
+			for (int i = 0; i < n; i++)
+			{
+				printf_s("Digite o %d numero do segundo vetor: ", i + 1);
+				scanf_s("%d", &vetor_b[i]);
+			}
+
+			for (int i = 0; i < n; i++)
+			{
+				for (size_t j = 0; j < n; j++)
+				{
+					if (vetor_a[i] == vetor_b[j])
+					{
+						repetido = 0;
+						for (int k = 0; k < cont; k++)
+						{
+							if (vetor_a[i] == interseccao[cont])
+							{
+								repetido = 1;
+							}
+						}
+						if (repetido == 0)
+						{
+							interseccao[cont] = vetor_a[i];
+							cont++;
+						}
+					}
+				}
+			}
+			for (int i = 0; i < cont; i++)
+			{
+				printf_s("interseccao = | %d |\n", interseccao[i]);
+			}
+			break;
+		}
+		
+		case 31:
+		{
+			int vetor_a[10], vetor_b[10], uniao[20];
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero do primeiro vetor: ", i + 1);
+				scanf_s("%d", &vetor_a[i]);
+				uniao[i] = vetor_a[i];
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero do segundo vetor: ", i + 1);
+				scanf_s("%d", &vetor_b[i]);
+				uniao[i + 10] = vetor_b[i];
+			}
+			for (int i = 0; i < 20; i++)
+			{
+				printf_s("Vetor uniao[%d] = | %d |\n", i, uniao[i]);
+			}
+			break;
+		}
+
+	
 
 		default:
 		{
 			if (exercicio == 0)
 				printf("Saindo do progama!...");
 			else
-				printf("Exercicio invalido!\n");
+				printf("\nExercicio invalido!\n");
 		}
 		}
 	}
@@ -351,4 +834,23 @@ double pow(double a, int b) {
 		resultado *= a;
 
 	return resultado;
+}
+
+int e_primo(int num) 
+{
+	int result = 0;
+
+	for (int i = 2; i <= num; i++)
+	{
+		if (i == num)
+		{
+			result = 1;
+			break;
+		}
+		if (num % i == 0)
+		{
+			break;
+		}
+	}
+	return result;
 }
