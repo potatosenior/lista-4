@@ -2,11 +2,13 @@
 #include <stdlib.h>
 
 double pow(double a, int b);
+int e_primo(int num);
+
 int main(void) {
 	int exercicio = 1;
 
 	while (exercicio != 0) {
-		printf("\nDigite 0 para sair ou exercicio desejado: ");
+		printf("\n\n-------------------------------------------------------\nDigite 0 para sair ou exercicio desejado: ");
 		scanf_s("%d", &exercicio);
 
 		switch (exercicio)
@@ -608,14 +610,14 @@ int main(void) {
 
 		case 25:
 		{
-			int vetor[100], cont = 0;
+			int vetor[100], cont = 0, j = 0;
 
 			for (int i = 0; i < 100; i++)
 			{
 				cont = 0;
-				for (int j = 7; cont != 1 ; j++)
+				for ( j; cont != 1 ; j++)
 				{
-					if (j % 7 == 0 || j % 10 == 7)
+					if (j % 7 != 0 && j % 10 != 7)
 					{
 						vetor[i] = j;
 						cont = 1;
@@ -625,6 +627,193 @@ int main(void) {
 			}
 			break;
 		}
+
+		case 26:
+		{
+			/* 
+			double media, desvio, vetor[10];
+			int n = 10;
+
+			for (int i = 0; i < n; i++)
+			{
+				pow(vetor[i] - media, 2);
+			}
+			*/
+		}
+
+		case 27:
+		{
+			struct numero
+			{
+				int numero;
+				int posicao;
+			};
+
+			numero primo[10];
+			int vetor[10], cont = 0, result;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				result = e_primo(vetor[i]);
+
+				if (result == 1)
+				{
+					primo[cont].numero = vetor[i];
+					primo[cont].posicao = i;
+					cont++;
+				}
+			}
+			printf_s("\nOs seguintes numeros sao primos: \n\n");
+			for (int i = 0; i < cont; i++)
+			{
+				printf_s("O numero | %d | na posicao | %d | do vetor.\n", primo[i].numero, primo[i].posicao);
+			}
+			break;
+		}
+
+		case 28:
+		{
+			int vetor[10], impares[10] = { NULL }, pares[10] = { NULL }, cont_pares = 0, cont_impares = 0;
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				if (vetor[i] % 2 == 0)
+				{
+					pares[cont_pares] = vetor[i];
+					cont_pares++;
+				}
+				else
+				{
+					impares[cont_impares] = vetor[i];
+					cont_impares++;
+				}
+			}
+			printf_s("\nElementos utilizados: \n");
+			for (int i = 0; i < 10; i++)
+			{
+				if (impares[i] != NULL)
+				{
+					printf_s("\nImpares[%d] = %d ", i, impares[i]);
+				}
+				if (pares[i] != NULL)
+				{
+					printf_s("| Pares[%d] = %d\n", i, pares[i]);
+				}
+			}
+			break;
+		}
+
+		case 29:
+		{
+			int vetor[6], pares[6] = { NULL }, soma_pares = 0, qntd_pares = 0, impares[6] = { NULL }, qntd_impares = 0;
+
+			for (int i = 0; i < 6; i++)
+			{
+				printf_s("Digite o %d numero: ", i + 1);
+				scanf_s("%d", &vetor[i]);
+
+				if (vetor[i] % 2 == 0)
+				{
+					pares[qntd_pares] = vetor[i];
+					soma_pares += vetor[i];
+					qntd_pares++;
+				}
+				else
+				{
+					impares[qntd_impares] = vetor[i];
+					qntd_impares++;
+				}
+			}
+
+				for (int i = 0; i < qntd_pares; i++)
+				{
+					printf_s("Pares[%d] = | %d | \n", i, pares[i]);
+				}
+				printf_s("\nSoma dos numeros pares: | %d |\n", soma_pares);
+				for (int i = 0; i < qntd_impares; i++)
+				{
+					printf_s("Impares[%d] = | %d | \n", i, impares[i]);
+				}
+				printf_s("\nQuantidade de numeros impares digitados: | %d |", qntd_impares);
+
+				break;
+		}
+
+		case 30:
+		{
+			int vetor_a[10], vetor_b[10], interseccao[10],
+			cont = 0, n = 10, repetido;
+
+			for (int i = 0; i < n; i++)
+			{
+				printf_s("Digite o %d numero do primeiro vetor: ", i + 1);
+				scanf_s("%d", &vetor_a[i]);
+			}
+			for (int i = 0; i < n; i++)
+			{
+				printf_s("Digite o %d numero do segundo vetor: ", i + 1);
+				scanf_s("%d", &vetor_b[i]);
+			}
+
+			for (int i = 0; i < n; i++)
+			{
+				for (size_t j = 0; j < n; j++)
+				{
+					if (vetor_a[i] == vetor_b[j])
+					{
+						repetido = 0;
+						for (int k = 0; k < cont; k++)
+						{
+							if (vetor_a[i] == interseccao[cont])
+							{
+								repetido = 1;
+							}
+						}
+						if (repetido == 0)
+						{
+							interseccao[cont] = vetor_a[i];
+							cont++;
+						}
+					}
+				}
+			}
+			for (int i = 0; i < cont; i++)
+			{
+				printf_s("interseccao = | %d |\n", interseccao[i]);
+			}
+			break;
+		}
+		
+		case 31:
+		{
+			int vetor_a[10], vetor_b[10], uniao[20];
+
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero do primeiro vetor: ", i + 1);
+				scanf_s("%d", &vetor_a[i]);
+				uniao[i] = vetor_a[i];
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				printf_s("Digite o %d numero do segundo vetor: ", i + 1);
+				scanf_s("%d", &vetor_b[i]);
+				uniao[i + 10] = vetor_b[i];
+			}
+			for (int i = 0; i < 20; i++)
+			{
+				printf_s("Vetor uniao[%d] = | %d |\n", i, uniao[i]);
+			}
+			break;
+		}
+
+	
 
 		default:
 		{
@@ -645,4 +834,23 @@ double pow(double a, int b) {
 		resultado *= a;
 
 	return resultado;
+}
+
+int e_primo(int num) 
+{
+	int result = 0;
+
+	for (int i = 2; i <= num; i++)
+	{
+		if (i == num)
+		{
+			result = 1;
+			break;
+		}
+		if (num % i == 0)
+		{
+			break;
+		}
+	}
+	return result;
 }
