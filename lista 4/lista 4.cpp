@@ -299,35 +299,33 @@ int main(void) {
 
 		case 15:
 		{
-			int vetor[20], repetidos[10], contador = 0;
+			int vetor[5], repetidos[5], cont = 0, existe;
 
-			for (int i = 0; i < 20; i++)
+			for (int i = 0; i < 5; i++)
 			{
-				printf_s("Digite o %d valor: ", i + 1);
+				printf_s("Digite Vetor[%d]: ", i);
 				scanf_s("%d", &vetor[i]);
+			}
+			for (int i = 0; i < 5; i++)
+			{
 				for (int j = 0; j < i; j++)
 				{
 					if (vetor[j] == vetor[i])
 					{
-						repetidos[contador] = vetor[i];
-						if(j == (i-1) )
-							contador++;
+						existe = 0;
+						for (int k = 0; k < cont; k++)
+						{
+							if (vetor[j] == repetidos[k])
+								existe = 1;
+						}
+						if (existe == 0)
+						{
+							repetidos[cont] = vetor[i];
+							cont++;
+						}
 					}
 				}
-			}
-			for (int i = 0; i < 20; i++)
-			{
-				for (int j = 0; j <= contador; j++) 
-				{
-					if (vetor[i] == repetidos[j]) {
-						vetor[i] == NULL;
-					}
-				}
-			}
-			for (int i = 0; i < 20; i++)
-			{
-				if (vetor[i] != NULL)
-					printf_s("Vetor[%d] = | %d |\n", i, vetor[i]);
+				printf_s("Vetor[%d] = %d | Repetidos[%d] = %d\n", i, vetor[i], i, repetidos[i]);
 			}
 			break;
 		}
