@@ -1069,6 +1069,21 @@ int main(void) {
 					{
 						if (vetor[j] <= menor && vetor[j] != NULL)
 						{
+							//repetido = 0;
+							//for (int k = 0; k < qntd; k++)
+							//{
+							//	if (vetor[j].numero == ordenado[k])
+							//	{
+							//		repetido = 1;
+							//	}
+							//}
+							//if (repetido == 0)
+							//{
+							//	ordenado[i] = menor;
+							//	menor = vetor[j].numero;
+							//}
+							//
+
 							ordenado[i] = vetor[j];
 							menor = vetor[j];
 							jota = j;
