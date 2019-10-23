@@ -1655,8 +1655,7 @@ int main(void) {
 							int nota = 0;
 						};
 
-						char gararito[10], lixo;
-						int resultado[5];
+						char gararito[10];
 						Aluno alunos[5];
 
 						for (int i = 0; i < 5; i++)
@@ -1698,12 +1697,11 @@ int main(void) {
 						{
 							char respostas[10];
 							int nota = 0,
-								matricula,
+								matricula = 0,
 								aprovado = 0;
 						};
 
-						char gararito[10], lixo;
-						int resultado[3];
+						char gararito[10];
 						Aluno alunos[3];
 
 						for (int i = 0; i < 3; i++)
@@ -1750,6 +1748,932 @@ int main(void) {
 							else
 								printf_s("Reprovado!\n");
 						}
+
+						break;
+					}
+
+					case 17:
+					{
+						int notas[10][3];
+						int provas[3] = { 0 }, menor, contador;
+
+						for (int i = 0; i < 10; i++)
+						{
+							printf_s("Digite as notas do %d aluno:\n", i + 1);
+							for (int j = 0; j < 3; j++)
+							{
+								printf_s("Digite a nota na %d prova: ", j + 1);
+								scanf_s("%d", &notas[i][j]);
+							}
+						}
+
+						for (int i = 0; i < 10; i++)
+						{
+							menor = notas[i][0];
+							contador = 0;
+
+							for (int j = 0; j < 3; j++)
+							{
+								if (notas[i][j] < menor)
+								{
+									contador = j;
+									menor = notas[i][j];
+								}
+
+							}
+							provas[contador]++;
+						}
+
+						printf_s("\n\nQuantidade de piores notas em cada prova:\n");
+						for (int i = 0; i < 3; i++)
+						{
+							printf_s("prova %d: %d\n", i + 1, provas[i]);
+						}
+
+						break;
+					}
+
+					case 18:
+					{
+						int matriz[3][3], vetor[3] = { 0 };
+
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								printf_s("\nDigite o valor da posicao matriz[%d][%d]: ", i, j);
+								scanf_s("%d", &matriz[i][j]);
+
+								vetor[j] += matriz[i][j];
+							}
+						}
+
+						for (int i = 0; i < 3; i++)
+						{
+							printf_s("\nSoma da %d coluna  = %d!", i + 1, vetor[i]);
+						}
+
+						break;
+					}
+
+					case 19:
+					{
+						int alunos[5][4], matricula_maior, nota_maior = 0;
+						float media_notas_finais = 0;
+
+						for (int i = 0; i < 5; i++)
+						{
+							printf_s("\nDigite o numero de matricula do %d aluno: ", i + 1);
+							scanf_s("%d", &alunos[i][0]);
+							printf_s("\nDigite a media das provas do aluno: ");
+							scanf_s("%d", &alunos[i][1]);
+							printf_s("\nDigite a media dos trabalhos do aluno: ");
+							scanf_s("%d", &alunos[i][2]);
+
+							alunos[i][3] = ( alunos[i][1] + alunos[i][2] ) / 2;
+
+							if (alunos[i][3] >= nota_maior)
+							{
+								matricula_maior = alunos[i][0];
+								nota_maior = alunos[i][3];
+							}
+
+							media_notas_finais += alunos[i][3];
+						}
+						media_notas_finais /= 5;
+
+						printf_s("\n---------------------\nA matricula do aluno que obteve maior nota final de | %d |, eh: %d\n", nota_maior, matricula_maior);
+						printf_s("---------------------\nA media aritmetica das notas finais eh: %.2f", media_notas_finais);
+
+						break;
+					}
+
+					case 20:
+					{
+						float matriz[3][6], soma = 0, media_aritmetica = 0;
+
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 6; j++)
+							{
+								printf_s("Digite o valor da posicao [%d][%d]: ", i, j);
+								scanf_s("%f", &matriz[i][j]);
+
+								if(j % 2 != 0)
+									soma += matriz[i][j];
+
+								if (j == 1 || j == 3)
+									media_aritmetica += matriz[i][j];
+							}
+						}
+						media_aritmetica /= 6;
+
+						printf_s("\nSoma dos elementos de colunas impares: %.2f\nMedia aritmetica dos elementos da segunda e quarta coluna: %.2f\n", soma, media_aritmetica);
+
+						printf_s("\nMatriz normal:\n---------------------\n");
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 6; j++)
+							{
+								printf_s("%.0f\t", matriz[i][j]);
+							}
+							printf_s("\n");
+						}
+						printf_s("\nMatriz modificada:\n---------------------\n");
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 6; j++)
+							{
+								if (j == 5)
+								{
+									matriz[i][j] = matriz[i][1] + matriz[i][2];
+								}
+								printf_s("%.0f\t", matriz[i][j]);
+							}
+							printf_s("\n");
+						}
+
+						break;
+					}
+
+					case 21:
+					{
+						float matriz_a[2][2], matriz_b[2][2], resultado[2][2];
+						int opcao = 1;
+
+						for (int i = 0; i < 2; i++)
+						{
+							for (int j = 0; j < 2; j++)
+							{
+								printf_s("Primeira matriz, digite o valor da pos [%d][%d]: ", i, j);
+								scanf_s("%f", &matriz_a[i][j]);
+							}
+						}
+						for (int i = 0; i < 2; i++)
+						{
+							for (int j = 0; j < 2; j++)
+							{
+								printf_s("Segunda matriz, digite o valor da pos [%d][%d]: ", i, j);
+								scanf_s("%f", &matriz_b[i][j]);
+							}
+						}
+
+						while (opcao != 0)
+						{
+							printf_s("\n\nDigite '1' para somar as duas matrizes!");
+							printf_s("\nDigite '2' para subtrair a primeira da segunda!");
+							printf_s("\nDigite '3' para adicionar uma constante as duas matrizes!");
+							printf_s("\nDigite '4' para imprimir as matrizes!");
+							printf_s("\nDigite '0' para sair!");
+							printf_s("\nOpcao: ");
+							scanf_s("%d", &opcao);
+							
+							switch (opcao)
+							{
+								case 1:
+								{
+									printf_s("\n---------------SOMA----------\n\n");
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											resultado[i][j] = matriz_a[i][j] + matriz_b[i][j];
+										}
+									}
+
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											printf_s("%.2f\t", resultado[i][j]);
+										}
+										printf_s("\n");
+									}
+									break;
+								}
+								case 2:
+								{
+									printf_s("\n---------------SUBTRACAO----------\n\n");
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											resultado[i][j] = matriz_a[i][j] - matriz_b[i][j];
+										}
+									}
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											printf_s("%.2f\t", resultado[i][j]);
+										}
+										printf_s("\n");
+									}
+									break;
+								}
+								case 3:
+								{
+									float constante;
+
+									printf_s("\nDigite a constante: ");
+									scanf_s("%f", &constante);
+
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											matriz_a[i][j] += constante;
+											matriz_b[i][j] += constante;
+										}
+									}
+									printf_s("\nMatriz A + constante(%.2f): \n\n", constante);
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											printf_s("%.2f\t", matriz_a[i][j]);
+										}
+										printf_s("\n");
+									}
+									printf_s("\nMatriz B + constante(%.2f): \n\n", constante);
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											printf_s("%.2f\t", matriz_b[i][j]);
+										}
+										printf_s("\n");
+									}
+
+									break;
+								}
+
+								case 4:
+								{
+									printf_s("\n\nMatriz A: \n\n");
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											printf_s("%.2f\t", matriz_a[i][j]);
+										}
+										printf_s("\n");
+									}
+									printf_s("\n\nMatriz B: \n\n");
+									for (int i = 0; i < 2; i++)
+									{
+										for (int j = 0; j < 2; j++)
+										{
+											printf_s("%.2f\t", matriz_b[i][j]);
+										}
+										printf_s("\n");
+									}
+
+									break;
+								}
+
+								default:
+								{
+									if (opcao != 0)
+										printf_s("\n\nOpcao invalida!\n");
+									break;
+								}
+							}
+						}
+
+						break;
+					}
+
+					case 22:
+					{
+						int matriz_a[3][3], matriz_b[3][3], resultado[3][3] = { 0 };
+
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								printf_s("\nPrimeira matriz, digite o valor da posicao [%d][%d]:", i, j);
+								scanf_s("%d", &matriz_a[i][j]);
+							}
+						}
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								printf_s("\nSegunda matriz, digite o valor da posicao [%d][%d]:", i, j);
+								scanf_s("%d", &matriz_b[i][j]);
+							}
+						}
+						//multiplicacao
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								for (int k = 0; k < 3; k++)
+								{
+									resultado[i][j] += matriz_a[i][k] * matriz_b[k][j];
+								}
+							}
+						}
+						printf_s("\nMatri A * Matriz B = \n\n");
+
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								printf_s("%d\t", resultado[i][j]);
+							}
+							printf_s("\n");
+						}
+
+						break;
+					}
+
+					case 23:
+					{
+						int matriz_a[3][3], resultado[3][3] = { 0 };
+
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								printf_s("\nDigite o valor da posicao [%d][%d]:", i, j);
+								scanf_s("%d", &matriz_a[i][j]);
+							}
+						}
+						//multiplicacao
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								for (int k = 0; k < 3; k++)
+								{
+									resultado[i][j] += matriz_a[i][k] * matriz_a[k][j];
+								}
+							}
+						}
+
+						printf_s("\n\nResultado de Matriz A^2:\n\n");
+
+						for (int i = 0; i < 3; i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								printf_s("%d\t", resultado[i][j]);
+							}
+							printf_s("\n");
+						}
+
+						break;
+					}
+					
+					case 24:
+					{
+						int numero = 0, maior = 0, x_1,x_2,x_3,x_4, y_1, y_2, y_3, y_4;
+						int matriz[20][20] = {	8, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 8,
+												49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 04, 56, 62, 00,
+												81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 03, 49, 13, 36, 65,
+												52 ,70, 95, 23, 04, 60, 11, 42, 69, 24, 68, 56, 01, 32, 56, 71, 37, 02, 36, 91,
+												22, 31, 16, 71, 51, 67, 63, 89,	41, 92, 36, 54, 22, 40, 40, 28, 66, 33, 13, 80,
+												24, 47, 32, 60, 99, 03, 45, 02,	44, 75, 33, 53, 78, 36, 84, 20, 35, 17, 12, 50,
+												32, 98, 81, 28, 64, 23 ,67, 10,	26, 38, 40, 67, 59, 54, 70, 66, 18, 38, 64, 70,
+												67, 26, 20, 68, 02, 62 ,12 ,20, 95, 63, 94, 39, 63, 8 ,	40, 91, 66, 49, 94, 21,
+												24, 55, 58, 05, 66, 73 ,99 ,26, 97, 17, 78, 78, 96, 83, 14, 88, 34, 89, 63, 72,
+												21, 36, 23, 9 ,	75 ,00,	76 ,44, 20, 45, 35, 14, 00, 61, 33, 97, 34, 31, 33, 95,
+												78, 17, 53, 28, 22, 75, 31 ,67, 15, 94, 03, 80, 04, 62, 16, 14, 9 ,	53, 56, 92,
+												16, 39, 05, 42, 96, 35, 31, 47, 55, 58, 88, 24, 00, 17, 54, 24, 36, 29, 85, 57,
+												86, 56, 00, 48, 35, 71, 89, 07, 05, 44, 44, 37, 44, 60, 21, 58, 51, 54, 17, 58,
+												19, 80, 81, 68,	05, 94, 47, 69, 28, 73, 92, 13, 86, 52, 17, 77, 04, 89, 55, 40,
+												04, 52, 8 ,	83,	97,	35, 99,	16, 07, 97, 57, 32, 16, 26, 26, 79, 33, 27, 98, 66,
+												88, 36, 68, 87, 57 ,62, 20, 72, 03, 46, 33, 67, 46, 55,	12, 32, 63, 93, 53, 69,
+												04, 42, 16, 73, 38, 25, 39, 11, 24, 94, 72, 18, 8 ,	46,	29, 32, 40, 62, 76, 36,
+												20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67,	59, 85, 74, 04, 36, 16,
+												20, 73, 35, 29, 78, 31, 90, 01, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 05, 54,
+												01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48,						};
+
+						for (int i = 0; i < 17; i++)		//diagonais { \ }
+						{
+							for (int j = 0; j < 17; j++)
+							{
+								numero = matriz[i][j] * matriz[i+1][j+1] * matriz[i+2][j+2] * matriz[i+3][j+3];
+								if (numero > maior)
+								{
+									maior = numero;
+									x_1 = i;
+									x_2 = i + 1;
+									x_3 = i + 2;
+									x_4 = i + 3;
+									y_1 = j;
+									y_2 = j + 1;
+									y_3 = j + 2;
+									y_4 = j + 3;
+								}
+							}
+						}
+
+						for (int i = 0; i < 17; i++)		//diagonais { / }
+						{
+							for (int j = 19; j > 2; j--)
+							{
+								numero = matriz[i][j] * matriz[i + 1][j - 1] * matriz[i + 2][j - 2] * matriz[i + 3][j - 3];
+								if (numero > maior)
+								{
+									maior = numero;
+									x_1 = i;
+									x_2 = i + 1;
+									x_3 = i + 2;
+									x_4 = i + 3;
+									y_1 = j;
+									y_2 = j - 1;
+									y_3 = j - 2;
+									y_4 = j - 3;
+								}
+							}
+						}
+
+						for (int i = 0; i < 20; i++)		//horizontais { - }
+						{
+							for (int j = 0; j < 17; j++)
+							{
+								numero = matriz[i][j] * matriz[i][j + 1] * matriz[i][j + 2] * matriz[i][j + 3];
+								if (numero > maior)
+								{
+									maior = numero;
+									x_1 = i;
+									x_2 = i;
+									x_3 = i;
+									x_4 = i;
+									y_1 = j;
+									y_2 = j + 1;
+									y_3 = j + 2;
+									y_4 = j + 3;
+								}
+							}
+						}
+
+						for (int i = 0; i < 17; i++)		//verticais { | }
+						{
+							for (int j = 0; j < 20; j++)
+							{
+								numero = matriz[i][j] * matriz[i+1][j] * matriz[i + 2][j] * matriz[i + 3][j];
+								if (numero > maior)
+								{
+									maior = numero;
+									x_1 = i;
+									x_2 = i + 1;
+									x_3 = i + 2;
+									x_4 = i + 3;
+									y_1 = j;
+									y_2 = j;
+									y_3 = j;
+									y_4 = j;
+								}
+							}
+						}
+						printf_s("\nMaior numero : %d\n", maior);
+						printf_s("\n1 numero [%d][%d]", x_1, y_1);
+						printf_s("\n2 numero [%d][%d]", x_2, y_2);
+						printf_s("\n3 numero [%d][%d]", x_3, y_3);
+						printf_s("\n4 numero [%d][%d]", x_4, y_4);
+
+						break;
+					}
+
+					case 25:
+					{
+						int tabuleiro[3][3] = { 0 }, numero, numero_soma = 0, 
+							x, y, verif = 0;
+						int sis_win = 0, player_win = 0,
+							ganhador = 0;
+						int contador = 0, aux = 0, aux_2 = 0, marcou = 0, qntd_jogadas = 0;
+
+						while (ganhador != 1)
+						{
+
+							system("cls");
+							printf_s("-----------------------------\n\tJOGO DA VELHA\t\nJogador = X\nSistema = O\nVazio   = -\n----------------------------\n\n");
+							for (int i = 0; i < 3; i++)
+							{
+								for (int j = 0; j < 3; j++)			//	sistema = 1, jogador = -1, vazio = 0
+								{
+									if (tabuleiro[i][j] == 1)
+										printf_s("o ");
+									if (tabuleiro[i][j] == -1)
+										printf_s("x ");
+									if (tabuleiro[i][j] == 0)
+										printf_s("- ");
+								}
+								printf_s("\n");
+							}
+
+							verif = 0;
+							while (verif != 1)
+							{
+								printf_s("\n\nDigite a posicao X na matriz que deseja marcar 'X': ");
+								scanf_s("%i", &x);
+								printf_s("Digite a posicao Y na matriz que deseja marcar 'X': ");
+								scanf_s("%i", &y);
+
+								if (tabuleiro[x][y] != 0)
+								{
+									printf_s("\nPosicao ja marcada!");
+									verif = 0;
+								}
+								else
+								{
+									verif = 1;
+									tabuleiro[x][y] = -1;
+								}
+							}
+							marcou = 0;
+
+							
+							//verificar se o Sistema esta proximo de ganhar
+
+								// diagonal { \ }
+							contador = 0;
+							if (marcou != 1)
+							{
+								for (int i = 0; i < 3; i++)
+								{
+									for (int j = 0; j < 3; j++)
+									{
+										if (i == j)
+										{
+											if (tabuleiro[i][j] == 1)
+											{
+												contador++;
+											}
+											else
+												aux = i;
+										}
+									}
+									if (contador == 2)
+									{
+										if (tabuleiro[aux][aux] == 0)
+										{
+											tabuleiro[aux][aux] = 1;
+											marcou = 1;
+										}
+									}
+								}
+							}
+							if (marcou != 1)
+							{
+								// diagonal { / }
+								contador = 0;
+								aux = 0;
+								aux_2 = 0;
+
+								if (tabuleiro[0][2] == 1)
+									contador++;
+								else
+								{
+									aux = 0;
+									aux_2 = 2;
+								}
+								if (tabuleiro[1][1] == 1)
+									contador++;
+								else
+								{
+									aux = 1;
+									aux_2 = 1;
+								}
+								if (tabuleiro[2][0] == 1)
+									contador++;
+								else
+								{
+									aux = 2;
+									aux_2 = 0;
+								}
+
+								if (contador == 2)
+								{
+									if (tabuleiro[aux][aux_2] == 0)
+									{
+										tabuleiro[aux][aux_2] = 1;
+										marcou = 1;
+									}
+								}
+							}
+							if (marcou != 1)
+							{
+								// vertical
+								for (int i = 0; i < 3; i++)
+								{
+									contador = 0;		//reseta o contador toda vez que muda de coluna
+									for (int j = 0; j < 3; j++)
+									{
+										if (tabuleiro[j][i] == 1)
+										{
+											contador++;
+										}
+										else {
+											aux = j;	//pega a linha que ta vazia, se tiver vazia
+											aux_2 = i;
+										}
+									}
+									if (contador == 2)
+									{
+										if (tabuleiro[aux][aux_2] == 0)
+										{
+											tabuleiro[aux][aux_2] = 1;
+											marcou = 1;
+										}
+									}
+								}
+							}
+							if (marcou != 1)
+							{
+								// horizontal
+								for (int i = 0; i < 3; i++)
+								{
+									contador = 0;		//reseta o contador toda vez que muda de linha
+									for (int j = 0; j < 3; j++)
+									{
+										if (tabuleiro[i][j] == 1)
+										{
+											contador++;
+										}
+										else {
+											aux = i;	//pega a linha que ta vazia, se tiver vazia
+											aux_2 = j;
+										}
+									}
+									if (contador == 2)
+									{
+										if (tabuleiro[aux][aux_2] == 0)
+										{
+											tabuleiro[aux][aux_2] = 1;
+											marcou = 1;
+										}
+									}
+								}
+							}
+
+							//verificar se falta 1 movimento pro jogador ganhar, se faltar, marcar a posicao que falta
+
+							// diagonal { \ }
+							contador = 0;
+							if (marcou != 1)
+							{
+								for (int i = 0; i < 3; i++)
+								{
+									for (int j = 0; j < 3; j++)
+									{
+										if (i == j)
+										{
+											if (tabuleiro[i][j] == -1)
+											{
+												contador++;
+											}
+											else
+												aux = i;
+										}
+									}
+									if (contador == 2)
+									{
+										if (tabuleiro[aux][aux] == 0)
+										{
+											tabuleiro[aux][aux] = 1;
+											marcou = 1;
+										}
+									}
+								}
+							}						
+							if (marcou != 1)
+							{
+								// diagonal { / }
+								contador = 0;
+								aux = 0;
+								aux_2 = 0;
+
+								if (tabuleiro[0][2] == -1)
+									contador++;
+								else
+								{
+									aux = 0;
+									aux_2 = 2;
+								}
+								if (tabuleiro[1][1] == -1)
+									contador++;
+								else
+								{
+									aux = 1;
+									aux_2 = 1;
+								}
+								if (tabuleiro[2][0] == -1)
+									contador++;
+								else
+								{
+									aux = 2;
+									aux_2 = 0;
+								}
+
+								if (contador == 2)
+								{
+									if (tabuleiro[aux][aux_2] == 0)
+									{
+										tabuleiro[aux][aux_2] = 1;
+										marcou = 1;
+									}
+								}
+							}
+							if (marcou != 1)
+							{
+								// vertical
+								for (int i = 0; i < 3; i++)
+								{
+									contador = 0;		//reseta o contador toda vez que muda de coluna
+									for (int j = 0; j < 3; j++)
+									{
+										if (tabuleiro[j][i] == -1)
+										{
+											contador++;
+										}
+										else
+										{
+											aux = j;	//pega a linha que ta vazia, se tiver vazia
+											aux_2 = i;
+										}
+									}
+									if (contador == 2)
+									{
+										if (tabuleiro[aux][aux_2] == 0)
+										{
+											tabuleiro[aux][aux_2] = 1;
+											marcou = 1;
+										}
+									}
+								}
+							}
+							if (marcou != 1)
+							{
+								// horizontal
+								for (int i = 0; i < 3; i++)
+								{
+									contador = 0;		//reseta o contador toda vez que muda de linha
+									for (int j = 0; j < 3; j++)
+									{
+										if (tabuleiro[i][j] == -1)
+										{
+											contador++;
+										}
+										else
+										{
+											aux = i;	//pega a linha que ta vazia, se tiver vazia
+											aux_2 = j;
+										}
+									}
+									if (contador == 2)
+									{
+										if (tabuleiro[aux][aux_2] == 0)
+										{
+											tabuleiro[aux][aux_2] = 1;
+											marcou = 1;
+										}
+									}
+								}
+							}
+							//fim de verificar se o jogador estava proximo de ganhar
+
+							//se (marcou != 1) ate agora, e pq o sistema e o jogador nao estava proximo de ganhar entao nao marcou em nenhum lugar
+							//entao, deve-se marcar em algum lugar
+
+							if (marcou != 1)
+							{
+								for (int i = 0; i < 3; i++)
+								{
+									for (int j = 0; j < 3; j++)
+									{
+										if (tabuleiro[i][j] == 0 && marcou != 1)
+										{
+											tabuleiro[i][j] = 1;		//marco o primeiro lugar vazio que achar
+											marcou = 1;
+
+											break;
+										}
+									}
+								}
+							}
+							//verifica se alguem ganhou
+
+							numero = tabuleiro[0][0] * tabuleiro[1][1] * tabuleiro[2][2];	//diagonais { \ }			
+							numero_soma = tabuleiro[0][0] + tabuleiro[1][1] + tabuleiro[2][2];
+							if (numero < 0 && numero_soma == -3)	//player ganhou
+							{
+								player_win = 1;
+							}
+							else
+								if (numero > 0 && numero_soma == 3)
+								{
+									sis_win = 1;	//sistema ganhou
+								}
+								else
+								{
+									numero = tabuleiro[0][2] * tabuleiro[1][1] * tabuleiro[2][0];	//diagonais { / }
+									numero_soma = tabuleiro[0][2] + tabuleiro[1][1] + tabuleiro[2][0];
+									if (numero < 0 && numero_soma == -3)	//player ganhou
+									{
+										player_win = 1;
+									}
+									else
+										if (numero > 0 && numero_soma == 3)
+										{
+											sis_win = 1;	//sistema ganhou
+										}
+										else
+										{
+											for (int i = 0; i < 3; i++)		//horizontais { - }	
+											{
+												numero = tabuleiro[i][0] * tabuleiro[i][1] * tabuleiro[i][2];
+												numero_soma = tabuleiro[i][0] + tabuleiro[i][1] + tabuleiro[i][2];
+
+												if (numero < 0 && numero_soma == -3)	//player ganhou
+												{
+													player_win = 1;
+												}
+												else
+													if (numero > 0 && numero_soma == 3)
+													{
+														sis_win = 1;	//sistema ganhou
+													}
+											}
+											if (sis_win != 1 && player_win != 1)
+											{
+												for (int i = 0; i < 3; i++)		//verticais { | }
+												{
+													numero = tabuleiro[0][i] * tabuleiro[1][i] * tabuleiro[2][i];
+													numero_soma = tabuleiro[0][i] + tabuleiro[1][i] + tabuleiro[2][i];
+													if (numero < 0 && numero_soma == -3)	//player ganhou
+													{
+														player_win = 1;
+													}
+													else
+														if (numero > 0 && numero_soma == 3)
+														{
+															sis_win = 1;	//sistema ganhou
+														}
+												}
+											}
+										}
+								}
+
+							qntd_jogadas++;
+
+							if (sis_win != 1 && player_win != 1)	//ninguem ganhou
+							{
+								ganhador = 0;
+							}
+							else
+								ganhador = 1;
+
+							if (ganhador == 1)
+							{
+								system("cls");
+								printf_s("-----------------------------\n\tJOGO DA VELHA\t\nJogador = X\nSistema = O\nVazio = -\n----------------------------\n\n");
+								for (int i = 0; i < 3; i++)
+								{
+									for (int j = 0; j < 3; j++)			//	sistema = 1, jogador = -1, vazio = 0
+									{
+										if (tabuleiro[i][j] == 1)
+											printf_s("o ");
+										if (tabuleiro[i][j] == -1)
+											printf_s("x ");
+										if (tabuleiro[i][j] == 0)
+											printf_s("- ");
+									}
+									printf_s("\n");
+								}
+
+								if (player_win == 1)
+									printf_s("\n\nO jogador ganhou!");
+								else
+									printf_s("\n\nO Sistema ganhou!");
+							}
+							if (qntd_jogadas == 5 && ganhador == 0)
+							{
+								system("cls");
+								printf_s("-----------------------------\n\tJOGO DA VELHA\t\nJogador = X\nSistema = O\nVazio   = -\n----------------------------\n\n");
+								for (int i = 0; i < 3; i++)
+								{
+									for (int j = 0; j < 3; j++)			//	sistema = 1, jogador = -1, vazio = 0
+									{
+										if (tabuleiro[i][j] == 1)
+											printf_s("o ");
+										if (tabuleiro[i][j] == -1)
+											printf_s("x ");
+										if (tabuleiro[i][j] == 0)
+											printf_s("- ");
+									}
+									printf_s("\n");
+								}
+								printf_s("\n\nDeu velha!\n");
+
+								break;
+							}
+
+						}		//loop do jogo
 
 						break;
 					}
